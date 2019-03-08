@@ -53,6 +53,7 @@ export default {
         if (valid) {
           alert("submit!");
         } else {
+          // eslint-disable-next-line
           console.log("error submit!!");
           return false;
         }
