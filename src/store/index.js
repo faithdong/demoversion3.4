@@ -2,49 +2,74 @@
  * @Author: zhongxd 
  * @Date: 2019-03-11 14:24:01 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-11 20:43:08
+ * @Last Modified time: 2019-03-11 23:10:46
  */
 
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 Vue.use(Vuex);
 
 
 //https://segmentfault.com/a/1190000015782272
+//https://www.jianshu.com/p/a804606ad8e9
+
+//https://www.cnblogs.com/zdd2017/p/9871925.html
 
 
 const state = { //要设置的全局访问的state对象
-  showFooter: true,
-  changableNum: 0
-  //要设置的初始属性值
+  user: {},
+  status: '',
+
 };
 
 
 const getters = { //实时监听state值的变化(最新状态)
-  isShow(state) { //方法名随意,主要是来承载变化的showFooter的值
-    return state.showFooter;
-  },
-  getChangedNum() { //方法名随意,主要是用来承载变化的changableNum的值
-    return state.changableNum;
-  }
+  // !!将state.token强制转换为布尔值，若state.token存在且不为空(已登录)则返回true，反之返回false
+  authStatus: state => state.status
 }
 
 const mutations = {
-  show(state) { //自定义改变state初始值的方法，这里面的参数除了state之外还可以再传额外的参数(变量或对象);
-    state.showFooter = true;
+  auth_request(state) {
+    state.status = 'loading';
   },
-  hide(state) { //同上
-    state.showFooter = false;
+  auth_success(state, user) {
+    state.status = 'success';
+    state.user = user;
   },
-  newNum(state, sum) { //同上，这里面的参数除了state之外还传了需要增加的值sum
-    state.changableNum += sum;
-  }
+  auth_error(state) {
+    state.status = 'error';
+  },
+  logout(state) {
+    state.status = '';
+    state.token = '';
+  },
 }
+
+const actions = {
+  Login({ commit }, user) {
+    return new Promise((resolve, reject) => {
+      commit('auth_request')
+      // 向后端发送请求，验证用户名密码是否正确，请求成功接收后端返回的token值，利用commit修改store的state属性，并将token存放在localStorage中
+      axios.post('login', user)
+        .then(resp => {
+          const user = resp.data.user
+          commit('auth_success', user)
+          resolve(resp)
+        })
+        .catch(err => {
+          commit('auth_error')
+          reject(err)
+        })
+    })
+  },
+};
 
 const store = new Vuex.Store({
   state,
   getters,
-  mutations
+  mutations,
+  actions
 });
 
 export default store;
