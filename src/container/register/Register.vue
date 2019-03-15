@@ -14,11 +14,11 @@
     label-width="100px"
     class="demo-ruleForm"
   >
-    <el-form-item label="用户名" prop="name">
-      <el-input v-model="ruleForm2.name"></el-input>
+    <el-form-item label="用户名" prop="userName">
+      <el-input v-model="ruleForm2.userName"></el-input>
     </el-form-item>
-    <el-form-item label="密码" prop="pass">
-      <el-input type="password" v-model="ruleForm2.pass" autocomplete="off"></el-input>
+    <el-form-item label="密码" prop="userPwd">
+      <el-input type="password" v-model="ruleForm2.userPwd" autocomplete="off"></el-input>
     </el-form-item>
     <el-form-item label="确认密码" prop="checkPass">
       <el-input type="password" v-model="ruleForm2.checkPass" autocomplete="off"></el-input>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     var validatePass = (rule, value, callback) => {
@@ -46,7 +47,7 @@ export default {
     var validatePass2 = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入密码"));
-      } else if (value !== this.ruleForm2.pass) {
+      } else if (value !== this.ruleForm2.userPwd) {
         callback(new Error("两次输入密码不一致!"));
       } else {
         callback();
@@ -54,12 +55,12 @@ export default {
     };
     return {
       ruleForm2: {
-        name: "",
-        pass: "",
+        userName: "",
+        userPwd: "",
         checkPass: ""
       },
       rules2: {
-        pass: [{ validator: validatePass, trigger: "blur" }],
+        userPwd: [{ validator: validatePass, trigger: "blur" }],
         checkPass: [{ validator: validatePass2, trigger: "blur" }]
       }
     };
@@ -68,8 +69,20 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit!");
+          // eslint-disable-next-line
+          const userName = this.ruleForm2.userName;
+          const userPwd = this.ruleForm2.userPwd;
+          // eslint-disable-next-line
+          console.log(userName, userPwd);
+          axios.post('/user/register',{userName, userPwd})
+          .then(res=>{
+            console.log(res);
+          })
+          .catch(err=>{
+            console.log(err);
+          });
         } else {
+          // eslint-disable-next-line
           console.log("error submit!!");
           return false;
         }

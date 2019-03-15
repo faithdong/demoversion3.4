@@ -7,8 +7,8 @@
 
 const mongoose = require('mongoose');
 
-//const DB_URL = 'mongodb://localhost:27017/vue-veux';
-const DB_URL = 'mongodb://localhost:27017/imooc-chat';
+const DB_URL = 'mongodb://localhost:27017/vue-veux';
+//const DB_URL = 'mongodb://localhost:27017/imooc-chat';
 
 mongoose.connect(DB_URL);
 
