@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2019-03-08 19:58:38 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-08 20:06:12
+ * @Last Modified time: 2019-03-17 12:50:42
  */
 
 <template>
@@ -74,11 +74,13 @@ export default {
           const userPwd = this.ruleForm2.userPwd;
           // eslint-disable-next-line
           console.log(userName, userPwd);
-          axios.post('/user/register',{userName, userPwd})
+          axios.post('/user/list',{})
           .then(res=>{
+            // eslint-disable-next-line
             console.log(res);
           })
           .catch(err=>{
+            // eslint-disable-next-line
             console.log(err);
           });
         } else {

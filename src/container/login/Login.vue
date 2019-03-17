@@ -1,8 +1,8 @@
 /*
 * @Author: zhongxd
 * @Date: 2019-03-08 17:54:54
-* @Last Modified by: zhongxd
-* @Last Modified time: 2019-03-11 23:04:02
+ * @Last Modified by: zhongxd
+ * @Last Modified time: 2019-03-17 13:12:01
 */
 
 
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   export default {
     data() {
       var validatePass = (rule, value, callback) => {
@@ -45,30 +46,29 @@
     },
     methods: {
       submitForm(formName) {
-        this.$refs[formName].validate(valid => {
-          debugger;
-          if (valid) {
-            alert("submit!");
-            let userName = this.ruleForm2.name;
-            let password = this.ruleForm2.pass;
-            this.$store.dispatch('Login', {
-                userName,
-                password
-              })
-              .then(() => {
-                this.$router.push({
-                  path: '/'
-                });
-              })
-              .catch((error) => {
-                console.log(error.response);
-              });
-          } else {
+        // eslint-disable-next-line
+        console.log(formName);
+        // this.$refs[formName].validate(valid => {
+        //   if (valid) {
+        //     alert("submit!");
+        //     let userName = this.ruleForm2.name;
+        //     let password = this.ruleForm2.pass;
+        //   } else {
+        //     // eslint-disable-next-line
+        //     console.log("error submit!!");
+        //     return false;
+        //   }
+        // });
+
+        axios.get('/api/user/list', {})
+          .then(res => {
             // eslint-disable-next-line
-            console.log("error submit!!");
-            return false;
-          }
-        });
+            console.log(res);
+          })
+          .catch(err => {
+            // eslint-disable-next-line
+            console.log(err);
+          });
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();

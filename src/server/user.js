@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2019-02-28 11:48:00 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-11 23:14:23
+ * @Last Modified time: 2019-03-17 11:37:18
  */
 
 const express = require('express');
@@ -44,18 +44,19 @@ Router.post('/login', function (req, res) {
  */
 Router.post('/register',function(req,res){
   const { user , pwd } = req.body;
-  User.findeOne({user},function(err,doc){
-    if(doc){
-      return res.json({code:1, msg:'用户名重复'});
-    }
-    const userModel = new User({user , pwd});
+  // User.findeOne({user},function(err,doc){
+  //   if(doc){
+  //     return res.json({code:1, msg:'用户名重复'});
+  //   }
+    
+  // })
+  const userModel = new User({user , pwd});
     userModel.save(function(e,d){
       if(e){
         return res.json({code : 1 , msg : '后端出错了'});
       }
       return res.json({code :0 ,data:d});
     })
-  })
 })
 
 

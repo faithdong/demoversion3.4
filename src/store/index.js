@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2019-03-11 14:24:01 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-11 23:10:46
+ * @Last Modified time: 2019-03-17 11:09:06
  */
 
 import Vue from 'vue';
@@ -15,6 +15,9 @@ Vue.use(Vuex);
 //https://www.jianshu.com/p/a804606ad8e9
 
 //https://www.cnblogs.com/zdd2017/p/9871925.html
+
+axios.defaults.timeout = 5000 // 请求超时
+axios.defaults.baseURL = '/api/'  // api 即上面 vue.config.js 中配置的地址
 
 
 const state = { //要设置的全局访问的state对象
