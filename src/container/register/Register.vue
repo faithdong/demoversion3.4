@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2019-03-08 19:58:38 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-17 12:50:42
+ * @Last Modified time: 2019-03-19 21:50:39
  */
 
 <template>
@@ -70,11 +70,11 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           // eslint-disable-next-line
-          const userName = this.ruleForm2.userName;
-          const userPwd = this.ruleForm2.userPwd;
+          const user = this.ruleForm2.userName;
+          const pwd = this.ruleForm2.userPwd;
           // eslint-disable-next-line
-          console.log(userName, userPwd);
-          axios.post('/user/list',{})
+          console.log(user, pwd);
+          axios.post('/api/user/register',{user, pwd})
           .then(res=>{
             // eslint-disable-next-line
             console.log(res);

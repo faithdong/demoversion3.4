@@ -2,13 +2,13 @@
  * @Author: zhongxd 
  * @Date: 2019-03-11 23:12:41 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-11 23:17:10
+ * @Last Modified time: 2019-03-19 21:36:38
  */
 
 const mongoose = require('mongoose');
 
-const DB_URL = 'mongodb://localhost:27017/vue-veux';
-//const DB_URL = 'mongodb://localhost:27017/imooc-chat';
+ const DB_URL = 'mongodb://localhost:27017/vue-veux';
+// const DB_URL = 'mongodb://localhost:27017/imooc-chat';
 
 mongoose.connect(DB_URL);
 

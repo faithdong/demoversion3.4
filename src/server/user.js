@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2019-02-28 11:48:00 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-17 11:37:18
+ * @Last Modified time: 2019-03-19 22:34:58
  */
 
 const express = require('express');
@@ -30,7 +30,7 @@ Router.get('/list', function (req, res) {
  */
 Router.post('/login', function (req, res) {
   const { user, pwd } = req.body;
-  User.findOne({ user, pwd:utils(pwd) }, _filter, function (err, doc) {
+  User.findOne({ user, pwd }, _filter, function (err, doc) {
     if (!doc) {
       return res.json({ code: 1, msg: '用户名或者密码错误' });
     }
@@ -43,6 +43,8 @@ Router.post('/login', function (req, res) {
  * 注册
  */
 Router.post('/register',function(req,res){
+  // eslint-disable-next-line
+  debugger;
   const { user , pwd } = req.body;
   // User.findeOne({user},function(err,doc){
   //   if(doc){

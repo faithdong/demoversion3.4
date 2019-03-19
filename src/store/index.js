@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2019-03-11 14:24:01 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-17 11:09:06
+ * @Last Modified time: 2019-03-19 22:34:08
  */
 
 import Vue from 'vue';
@@ -23,7 +23,6 @@ axios.defaults.baseURL = '/api/'  // api 即上面 vue.config.js 中配置的地
 const state = { //要设置的全局访问的state对象
   user: {},
   status: '',
-
 };
 
 
@@ -54,7 +53,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       commit('auth_request')
       // 向后端发送请求，验证用户名密码是否正确，请求成功接收后端返回的token值，利用commit修改store的state属性，并将token存放在localStorage中
-      axios.post('login', user)
+      axios.post('/api/user/login', user)
         .then(resp => {
           const user = resp.data.user
           commit('auth_success', user)
