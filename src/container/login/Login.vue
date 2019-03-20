@@ -2,7 +2,7 @@
 * @Author: zhongxd
 * @Date: 2019-03-08 17:54:54
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-19 22:34:04
+ * @Last Modified time: 2019-03-20 20:45:29
 */
 
 
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   data() {
     var validatePass = (rule, value, callback) => {
@@ -78,6 +78,7 @@ export default {
       //     // eslint-disable-next-line
       //     console.log(err);
       //   });
+      
       let params = {
         user:this.ruleForm2.userName,
         pwd:this.ruleForm2.userPwd
@@ -88,6 +89,7 @@ export default {
           this.$router.push({ path: "/" });
         })
         .catch(error => {
+          // eslint-disable-next-line
           console.log(error.response);
         });
     },
