@@ -2,11 +2,11 @@
  * @Author: zhongxd 
  * @Date: 2019-02-28 11:48:00 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-19 22:34:58
+ * @Last Modified time: 2019-03-20 23:13:00
  */
 
 const express = require('express');
-const utils = require('utility');
+// const utils = require('utility');
 const Router = express.Router();
 const modle = require('./moduleuser');
 const User = modle.getModel('user');
