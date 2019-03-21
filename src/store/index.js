@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2019-03-11 14:24:01 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-19 22:34:08
+ * @Last Modified time: 2019-03-21 22:28:22
  */
 
 import Vue from 'vue';
@@ -27,7 +27,6 @@ const state = { //要设置的全局访问的state对象
 
 
 const getters = { //实时监听state值的变化(最新状态)
-  // !!将state.token强制转换为布尔值，若state.token存在且不为空(已登录)则返回true，反之返回false
   authStatus: state => state.status
 }
 
