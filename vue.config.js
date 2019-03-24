@@ -51,12 +51,12 @@ module.exports = {
 			// open: true, //配置自动启动浏览器
 			// proxy: 'http://192.168.2.103:9093' // 配置跨域处理,只有一个代理
 			proxy: {
-					'/api': {
-              //target: 'http://192.168.2.103:9093', //（这里是代理接口的位置） 
-              target: 'http://192.168.60.48:9093',
+					'/user': {
+              target: 'http://192.168.2.103:9093', //（这里是代理接口的位置） 
+              //target: 'http://192.168.60.48:9093',
 							//ws: true, //websocket
-							changeOrigin: false, //（允许跨域，如果这不写，调用接口接口时会有跨域错误说缺少请求头）
-							pathRewrite: {'^/api': '' } 
+							changeOrigin: true, //（允许跨域，如果这不写，调用接口接口时会有跨域错误说缺少请求头）
+							//pathRewrite: {'^/api': '' } 
 					},
 			},  // 配置多个代理
 	}
