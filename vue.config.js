@@ -52,8 +52,8 @@ module.exports = {
 			// proxy: 'http://192.168.2.103:9093' // 配置跨域处理,只有一个代理
 			proxy: {
 					'/user': {
-              target: 'http://192.168.2.103:9093', //（这里是代理接口的位置） 
-              //target: 'http://192.168.60.48:9093',
+              // target: 'http://192.168.2.103:9093', //（这里是代理接口的位置） 
+              target: 'http://192.168.60.75:9093',
 							//ws: true, //websocket
 							changeOrigin: true, //（允许跨域，如果这不写，调用接口接口时会有跨域错误说缺少请求头）
 							//pathRewrite: {'^/api': '' } 
